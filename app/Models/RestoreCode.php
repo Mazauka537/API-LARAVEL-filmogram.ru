@@ -9,6 +9,10 @@ class RestoreCode extends Model
 {
     use HasFactory;
 
+    protected $casts = [
+        'user_id' => 'integer',
+    ];
+
     protected $fillable = [
         'code',
         'user_id'

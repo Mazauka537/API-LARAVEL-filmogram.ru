@@ -9,6 +9,12 @@ class Film extends Model
 {
     use HasFactory;
 
+    protected $casts = [
+        'collection_id' => 'integer',
+        'film_id' => 'integer',
+        'order' => 'double'
+    ];
+
     protected $fillable = [
         'collection_id',
         'film_id',

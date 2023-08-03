@@ -11,6 +11,7 @@ use App\Http\Controllers\SaveController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\UserSettingsController;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,6 +24,14 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+Route::get('/cache', function () {
+    Artisan::call('config:cache');
+});
+
+Route::get('/storage', function () {
+    Artisan::call('storage:link');
+});
 
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);

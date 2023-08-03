@@ -2,6 +2,8 @@
 
 namespace App\Helpers;
 
+use Illuminate\Support\Facades\Log;
+
 class KinopoiskAPI
 {
     private static function fetch($curl)
@@ -9,7 +11,7 @@ class KinopoiskAPI
         $headers = array(
             'Accept: application/json',
             'Content-Type: application/json',
-            'X-API-KEY: ' . env('KINOPOISK_API_TOKEN')
+            'X-API-KEY: ' . config('kinopoisk_api.token')
         );
         curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
@@ -25,7 +27,7 @@ class KinopoiskAPI
 
     public static function getFilm($filmId)
     {
-        $curl = curl_init(env('KINOPOISK_API_URL') . '/' . $filmId);
+        $curl = curl_init(config('kinopoisk_api.url') . '/' . $filmId);
 
         return self::fetch($curl);
     }
@@ -41,7 +43,7 @@ class KinopoiskAPI
         $ratingTo = $request->rating_to ?? 10;
         $keyword = $request->keyword ?? null;
 
-        $url = env('KINOPOISK_API_URL');
+        $url = config('kinopoisk_api.url');
         $url .= '?order=' . $order;
 
         if ($keyword)

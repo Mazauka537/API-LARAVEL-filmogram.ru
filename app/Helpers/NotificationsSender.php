@@ -9,7 +9,7 @@ class NotificationsSender
 {
     public static function send($userId, $title, $body, $click_action = null, $icon = null) {
         $url = 'https://fcm.googleapis.com/fcm/send';
-        $SERVER_KEY = env('NOTIFICATION_SERVER_KEY');
+        $SERVER_KEY = config('notification.server_key');
 
         $notificationTokens = NotificationToken::where('user_id', $userId)->select('token')->get();
         $userClientTokens = [];
@@ -22,7 +22,7 @@ class NotificationsSender
             'notification' => [
                 'title' => $title,
                 'body' => $body,
-                'icon' => $icon ?? env('NOTIFICATION_ICON'),
+                'icon' => $icon ?? config('notification.icon'),
                 'click_action' => $click_action ?? null,
             ],
             'registration_ids' => $userClientTokens

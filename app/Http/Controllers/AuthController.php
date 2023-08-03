@@ -70,9 +70,9 @@ class AuthController extends Controller
             'code' => 'required|string'
         ]);
 
-        $clientID = env('GOOGLE_AUTH_CLIENT_ID');
-        $clientSecret = env('GOOGLE_AUTH_CLIENT_SECRET');
-        $redirectUri = env('GOOGLE_AUTH_REDIRECT_URI');
+        $clientID = config('google_auth.client_id');
+        $clientSecret = config('google_auth.client_secret');
+        $redirectUri = config('google_auth.redirect_uri');
 
         $client = new Google_Client();
         $client->setClientId($clientID);

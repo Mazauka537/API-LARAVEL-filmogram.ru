@@ -9,6 +9,14 @@ class Collection extends Model
 {
     use HasFactory;
 
+    protected $casts = [
+        'public' => 'boolean',
+        'constant' => 'boolean',
+        'user_id' => 'integer',
+        'saves_count' => 'integer',
+        'films_count' => 'integer',
+    ];
+
     protected $fillable = [
         'user_id',
         'title',

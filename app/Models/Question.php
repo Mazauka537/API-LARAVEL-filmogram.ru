@@ -9,6 +9,10 @@ class Question extends Model
 {
     use HasFactory;
 
+    protected $casts = [
+        'user_id' => 'integer'
+    ];
+
     protected $fillable = [
         'question',
         'email',

@@ -42,7 +42,14 @@ class User extends Authenticatable
      * @var array<string, string>
      */
     protected $casts = [
+        'role_id' => 'integer',
+        'is_saves_public' => 'boolean',
+        'is_notification_like_enabled' => 'boolean',
+        'is_notification_subscribe_enabled' => 'boolean',
         'email_verified_at' => 'datetime',
+        'subscribers' => 'integer',
+        'subscriptions' => 'integer',
+        'public_collections' => 'integer',
     ];
 
     protected $with = ['role'];
